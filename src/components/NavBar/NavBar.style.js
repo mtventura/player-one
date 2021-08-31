@@ -10,6 +10,7 @@ export const StyledNavBar = styled(NavBar)`
     align-items: center;
 
     @media (max-width:768px){
+        justify-content: space-around;
         justify-content: flex-start;
     }
 `;
