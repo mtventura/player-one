@@ -1,7 +1,9 @@
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const CartWidget = () => {
-    <ShoppingCartIcon/>
+const CartWidget = ({className}) => {
+    <button className={className}>
+        <ShoppingCartIcon/>
+    </button>
 }
 
 export default CartWidget;

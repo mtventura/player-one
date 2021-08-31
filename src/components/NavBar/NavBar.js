@@ -7,13 +7,14 @@ import Logo from "../../assets/images/LogoWeb.png";
     return (
         <nav className={className}>
             <div>
-                <img src={Logo}/>
+                <img alt="" src={Logo}/>
             </div>
                 <StyledButton buttonLabel="Inicio" textColor="white"/>
                 <StyledButton buttonLabel="Productos" textColor="white"/>
                 <StyledButton buttonLabel="Contacto" textColor="white"/>
                 <StyledButton buttonLabel="Sucursales" textColor="white"/>
                 <StyledButton buttonLabel="Ingresar" textColor="white" logIn/>
+                <StyledCartWidget/>
         </nav>
     )
  }
