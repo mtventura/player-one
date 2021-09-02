@@ -1,9 +1,8 @@
-import React from "react"; 
 import {StyledButton} from "../Button/Button.style"; 
 import {StyledCartWidget} from "../CartWidget/CartWidget.style";
 import Logo from "../../assets/images/LogoWeb.png";
 
- const NavBar = ({className}) => {
+ const NavBar = ({className, count}) => {
     return (
         <nav className={className}>
             <div>
@@ -14,7 +13,7 @@ import Logo from "../../assets/images/LogoWeb.png";
                 <StyledButton buttonLabel="Contacto" textColor="white"/>
                 <StyledButton buttonLabel="Sucursales" textColor="white"/>
                 <StyledButton buttonLabel="Ingresar" textColor="white" logIn/>
-                <StyledCartWidget/>
+                <StyledCartWidget items={count}/>
         </nav>
     )
  }
