@@ -1,10 +1,10 @@
 import { StyledItemCount } from "../ItemCount/ItemCount.Style"
 
-const Card = ({className, image, availableAmount, onClick}) => {
+const Card = ({className, image, stock, initial}) => {
     return(
         <div className={className}>
             <img alt ="" src={image}/>
-            <StyledItemCount availableAmount={availableAmount} onClick={onClick}/>
+            <StyledItemCount stock={stock} initial={initial}/>
         </div>
     )
 }

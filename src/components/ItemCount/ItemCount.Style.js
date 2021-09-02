@@ -9,6 +9,6 @@ text-align: center;
 border-radius: 5px;
 margin-left: 1rem; 
 margin-right: 1rem;
-display: inline-block; 
-justify-content: center;
+display: inline-block;
+place-content: space-around center;
 `;
