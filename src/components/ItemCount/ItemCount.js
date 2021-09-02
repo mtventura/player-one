@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { StyledButton } from '../Button/Button.style';
 import { StyledAddItem } from './AddItem/AddItem.style';
 import { StyledRemoveItem } from './RemoveItem/RemoveItem.Style';

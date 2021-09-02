@@ -2,7 +2,7 @@ import {StyledButton} from "../Button/Button.style";
 import {StyledCartWidget} from "../CartWidget/CartWidget.style";
 import Logo from "../../assets/images/LogoWeb.png";
 
- const NavBar = ({className, count}) => {
+ const NavBar = ({className}) => {
     return (
         <nav className={className}>
             <div>
@@ -13,7 +13,7 @@ import Logo from "../../assets/images/LogoWeb.png";
                 <StyledButton buttonLabel="Contacto" textColor="white"/>
                 <StyledButton buttonLabel="Sucursales" textColor="white"/>
                 <StyledButton buttonLabel="Ingresar" textColor="white" logIn/>
-                <StyledCartWidget items={count}/>
+                <StyledCartWidget/>
         </nav>
     )
  }
