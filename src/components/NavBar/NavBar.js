@@ -1,4 +1,3 @@
-import React from "react"; 
 import {StyledButton} from "../Button/Button.style"; 
 import {StyledCartWidget} from "../CartWidget/CartWidget.style";
 import Logo from "../../assets/images/LogoWeb.png";

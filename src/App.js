@@ -3,10 +3,11 @@ import { StyledItemListContainer } from './components/ItemListContainer/ItemList
 import {StyledNavBar} from "./components/NavBar/NavBar.style";
 
 function App() {
+
   return (
     <div className="App">
       <StyledNavBar StyledNavBarButton></StyledNavBar>
-      <StyledItemListContainer greeting='Item 1'/>
+      <StyledItemListContainer/>
     </div>
   );
 }

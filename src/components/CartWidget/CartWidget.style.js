@@ -8,9 +8,9 @@ export const StyledCartWidget = styled(CartWidget)`
     border: none;
     color: white;
     margin-left: 1rem; 
-    margin-right: 1rem;
+    margin-right: 3rem;
     &:hover
     {
-        background-color: ${(props) => props.logIn ? "#F8A5C9" : "#2D0066"};
+        background-color: #2D0066;
     }
 `;
