@@ -9,7 +9,7 @@ const Item = ({className, item}) =>{
             <img alt="" src={item.pictureUrl}/>
             <h3>{numberFormat.format(item.price)}</h3>
             <h3>{item.title}</h3>
-            <StyledItemCount stock={item.stock}/>
+            <StyledItemCount stock={item.stock} initial={1}/>
         </div>
     )
 }
