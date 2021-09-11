@@ -3,7 +3,7 @@ import Button from "./Button"
 
 export const StyledButton = styled(Button)`
 width: 10rem;
-height: 50px; 
+height: 40px; 
 background-color:${(props) => props.logIn ? "#8D0054" : "#170138"};
 font-family: Montserrat;
 font-size: 12px;

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { StyledItemDetailContainer } from "../ItemDetailContainer/ItemDetailContainer.style";
 import {StyledItemList} from '../ItemList/ItemList.style'
+import {StyledLoading} from '../Loading/Loading.style'
 
 const items = [
     {id: '001', title: 'Bulbasaur', description: '', price: 10, stock: 10, pictureUrl: 'https://images.gameinfo.io/pokemon/256/p1f87.png'},
@@ -21,18 +23,20 @@ const getCardItems = () => {
         setTimeout(() => resolve(items), 2000)
     })
 }
-
 const ItemListContainer = ({className}) => {
     const [itemsList, setCardItems] = useState([])
-
+    const [loading, setLoading] = useState(true);
+    const [selectedItem, setSelectedItem] = useState(); 
+    const [showDetail, setShowDetail] = useState(false); 
     useEffect(() => {
         const cardItems = getCardItems()
-        cardItems.then(items => {setCardItems(items)})
+        cardItems.then(items => {setCardItems(items)}).then(() => {setLoading(false)})
     }, [])
+
     return(
         <div className={className}>
-            <StyledItemList items={itemsList} />
-            {/* {itemsList.map(item => <StyledCard key={item.id} stock={item.stock} image={item.image}/>)} */}
+            {loading ? <StyledLoading/> : <StyledItemList items={itemsList} selectedItem={selectedItem} setSelectedItem={setSelectedItem} showDetail={showDetail} setShowDetail={setShowDetail}/>}
+            {showDetail ? <StyledItemDetailContainer id={selectedItem.id} showDetail={showDetail} setShowDetail={setShowDetail}/> : null}
         </div>
     )
 }
