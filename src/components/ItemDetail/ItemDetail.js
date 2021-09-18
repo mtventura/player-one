@@ -1,17 +1,24 @@
+import { StyledItemCount } from "../ItemCount/ItemCount.Style"
 
 const options = {style: 'currency', currency:'ARS'}
 const numberFormat = new Intl.NumberFormat('es-AR', options)
 
 const ItemDetail = ({className, item}) => {
+    const descParagraphs = item.description.split("\r\n")
     return(
         <div className={className}>
-            <div>
-                <img alt="" src={item[0].pictureUrl}/>
+            <div style={{marginRight:"2rem"}}>
+                <img alt="" src={item.image} style={{borderRadius: "10px"}}/>
             </div>
             <div>
-                <h2>{item[0].title}</h2>
-                <h3>{item[0].description}</h3>
-                <h3>{numberFormat.format(item[0].price)}</h3>
+                <div>
+                    <h1 style={{textAlign:"left", marginTop:"0px"}}>{item.name}</h1>
+                    <h3 style={{textAlign:"left"}}>{numberFormat.format(item.price)}</h3>
+                    {descParagraphs.map(par => <p key={par.index} style={{textAlign:"left"}}>{par}</p>)}
+                </div>
+                <div style={{justifyContent:"center", display: "flex"}}>
+                    <StyledItemCount stock={item.stock} initial={1} fixedAlignment={true}/>
+                </div>
             </div>
         </div>
     )

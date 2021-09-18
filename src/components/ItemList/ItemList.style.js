@@ -5,7 +5,8 @@ export const StyledItemList = styled(ItemList)`
     width:100vw;
     height:100vh; 
     display:flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    gap: 20px; 
     align-items: center;
     flex-wrap: wrap;
 `;

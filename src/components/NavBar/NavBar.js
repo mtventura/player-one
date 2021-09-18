@@ -1,21 +1,28 @@
 import {StyledButton} from "../Button/Button.style"; 
 import {StyledCartWidget} from "../CartWidget/CartWidget.style";
 import Logo from "../../assets/images/LogoWeb.png";
+import { Link } from "react-router-dom";
+import {MenuOptions} from "../../data"
+import { useEffect, useState } from "react";
 
-const navBarOptions = [
-    {id: '01', label:'Inicio', color: 'white', login: false},
-    {id: '02', label:'Productos', color: 'white', login: false},
-    {id: '03', label:'Contacto', color: 'white', login: false},
-    {id: '04', label:'Sucursales', color: 'white', login: false},
-    {id: '05', label:'Ingresar', color: 'white', login: true},
-]
+const getMenuOptions = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(MenuOptions), 50)
+    })
+}
+
  const NavBar = ({className}) => {
+    const [menuOptions, setMenuOptions] = useState([])
+    useEffect(() => {
+        const options = getMenuOptions()
+        options.then(option => {setMenuOptions(option)})
+    }, [])
     return (
         <nav className={className}>
             <div>
-                <img alt="" src={Logo}/>
+                 <Link to={`/`}><img alt="" src={Logo}/></Link>
             </div>
-            {navBarOptions.map(option => <StyledButton key={option.id} buttonLabel={option.label} textColor={option.color} logIn={option.login}/>)}
+            {menuOptions.map(option => <Link key={option.id} to={`/category/${option.page}`}><StyledButton key={option.id} buttonLabel={option.name} textColor={option.color} logIn={option.login}/></Link>)}
             <StyledCartWidget/>
         </nav>
     )
