@@ -23,7 +23,9 @@ const getMenuOptions = () => {
                  <Link to={`/`}><img alt="" src={Logo}/></Link>
             </div>
             {menuOptions.map(option => <Link key={option.id} to={`/category/${option.page}`}><StyledButton key={option.id} buttonLabel={option.name} textColor={option.color} logIn={option.login}/></Link>)}
-            <StyledCartWidget/>
+            <div>
+                <Link to={`/cart`}><StyledCartWidget/> </Link>
+            </div>
         </nav>
     )
  }
