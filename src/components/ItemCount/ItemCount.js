@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { StyledButton } from '../Button/Button.style';
 import { StyledAddItem } from './AddItem/AddItem.style';
 import { StyledRemoveItem } from './RemoveItem/RemoveItem.Style';
+import CartContext from '../context/CartContext'
 
-const ItemCount = ({className, stock, initial, onClick}) =>{
+const ItemCount = ({className, initial, item}) =>{
     const [amount, setAmount] = useState(initial === undefined ? 0 : initial);  
+    const { addToCart } = useContext(CartContext)
+
     const onClickHandler = () => {
-        onClick(amount)
+        addToCart({...item, quantity: amount})
     }
 
     return(
     <div className={className}>
-        <span>Stock disponible: {stock !== undefined ? stock : 0}</span>
+        <span>Stock disponible: {item.stock !== undefined ? item.stock : 0}</span>
         <StyledRemoveItem onRemove={() => amount > initial ? setAmount(amount - 1) : null}/>
         <span style={{verticalAlign: "top"}}>{amount}</span>
-        <StyledAddItem onAdd={() => amount < stock ? setAmount(amount + 1) : null} />
+        <StyledAddItem onAdd={() => amount < item.stock ? setAmount(amount + 1) : null} />
         <StyledButton buttonLabel="Agregar al carrito" textColor="white" logIn onClick={onClickHandler}/>
     </div>
     )

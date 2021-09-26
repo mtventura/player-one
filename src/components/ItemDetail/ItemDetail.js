@@ -1,18 +1,11 @@
 import { StyledItemCount } from "../ItemCount/ItemCount.Style"
-import { useState } from 'react'
 
 const options = {style: 'currency', currency:'ARS'}
 const numberFormat = new Intl.NumberFormat('es-AR', options)
 
 const ItemDetail = ({className, item}) => {
     const descParagraphs = item.description.split("\r\n")
-    const [quantity, setQuantity] = useState(0)
-    const addToCart = (newQuantity) => {
-        return(
-            newQuantity ? setQuantity(newQuantity) : null
-            )
-    }
-    console.log(quantity)
+
     return(
         <div className={className}>
             <div style={{marginRight:"2rem"}}>
@@ -25,7 +18,7 @@ const ItemDetail = ({className, item}) => {
                     {descParagraphs.map(par => <p key={par} style={{textAlign:"left"}}>{par}</p>)}
                 </div>
                 <div style={{justifyContent:"center", display: "flex"}}>
-                    <StyledItemCount stock={item.stock} initial={1} fixedAlignment={true} onClick={addToCart}/>
+                    <StyledItemCount initial={1} fixedAlignment={true} item={item}/>
                 </div>
             </div>
         </div>

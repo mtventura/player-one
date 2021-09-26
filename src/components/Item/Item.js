@@ -15,7 +15,7 @@ const Item = ({className, item}) =>{
                 <h3>{item.name}</h3>
             </div>
             </StyledLink>
-            <StyledItemCount stock={item.stock} initial={1}/>
+            <StyledItemCount initial={1} item={item}/>
         </div>
     )
 }
