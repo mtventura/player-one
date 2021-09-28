@@ -22,7 +22,7 @@ const Item = ({className, item}) =>{
         <div className={className}>
             <StyledLink to={`/item/${item.id}`}>
                 <div style={{height: "10rem"}}>
-                    <img alt="" src={item.image} style={{height: "10rem", borderRadius: "6px"}}/>
+                    <img alt="" src={item.image} style={{height: "10rem", borderRadius: "6px", marginTop:"5px"}}/>
                 </div>
             <div style={{height: "8rem"}}>
                 <h3>{numberFormat.format(item.price)}</h3>

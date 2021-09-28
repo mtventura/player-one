@@ -30,7 +30,7 @@ const ItemDetail = ({className, item}) => {
                     {descParagraphs.map(par => <p key={par} style={{textAlign:"left"}}>{par}</p>)}
                 </div>
                 <div style={{justifyContent:"center", display: "flex"}}>
-                    <StyledItemCount initial={1} fixedAlignment={true} item={item} addButton={true} onAdd={onAddHandler} onRemove={onRemoveHandler}/>
+                    <StyledItemCount amount={amount} fixedAlignment={true} item={item} addButton={true} onAdd={onAddHandler} onRemove={onRemoveHandler}/>
                 </div>
             </div>
         </div>

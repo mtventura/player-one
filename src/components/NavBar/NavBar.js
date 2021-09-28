@@ -4,8 +4,9 @@ import Logo from "../../assets/images/LogoWeb.png"
 import { Link } from "react-router-dom"
 import {MenuOptions} from "../../data"
 import { useEffect, useState, useContext } from "react"
-import UserContext from '../../context/UserContext'
 import {StyledLogInWidget} from '../LogInWidget/LogInWidget.style'
+import UserContext from '../../context/UserContext'
+import CartContext from '../../context/CartContext'
 
 const getMenuOptions = () => {
     return new Promise((resolve) => {
@@ -14,6 +15,8 @@ const getMenuOptions = () => {
 }
 const NavBar = ({className}) => {
     const { isUserLoggedIn } = useContext(UserContext)
+    const { cartSize } = useContext(CartContext)
+
     const [menuOptions, setMenuOptions] = useState([])
     useEffect(() => {
         const options = getMenuOptions()
@@ -28,9 +31,11 @@ const NavBar = ({className}) => {
             {menuOptions.map(option => <Link key={option.id} to={`/category/${option.page}`}><StyledButton key={option.id} buttonLabel={option.name} textColor={option.color} logIn={option.login}/></Link>)}
             {
                 isUserLoggedIn() ? 
-                <Link to={`/cart`}>
-                    {<StyledCartWidget/>}
-                </Link> :
+                    cartSize() !== 0 ? 
+                    <Link to={`/cart`}>
+                        {<StyledCartWidget/>}
+                    </Link> : null 
+                :
                 <Link to={`/login`}>
                     {<StyledLogInWidget/>} 
                 </Link>

@@ -2,13 +2,12 @@ import styled from "styled-components";
 import CartList from "./CartList";
 
 export const StyledCartList = styled(CartList)`
-    width:100vw;
-    height:100vh; 
-    display:block;
-    justify-content: space-between;
-    gap: 20px; 
-    align-items:flex-start;
-    flex-wrap: wrap;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px; 
+    align-items:center;
     color: #170138;
-
+    text-align: left;
 `
