@@ -19,12 +19,12 @@ const CartItem = ({className, item, removeFromCartHandler, addOneToCartItem, rem
 
     return (
         <div className={className}>
-            <img alt="" src={item.image} style={{height: "10rem", borderRadius: "6px"}}/>
-            <h2 style={{width:"50%"}}>{item.name}</h2>
+            <img alt="" src={item.image} style={{height: "8rem", borderRadius: "6px"}}/>
+            <h3 style={{width:"40%", marginLeft:"10px"}}>{item.name}</h3>
             <div>
                 <StyledItemCount item={item} amount={item.quantity} onAdd={onAddHandler} onRemove={onRemoveHandler}/>
             </div>
-            <h2>{numberFormat.format(item.price)}</h2>
+            <h3>{numberFormat.format(item.price)}</h3>
             <Close onClick={onClickHandler}/>
         </div>
     )

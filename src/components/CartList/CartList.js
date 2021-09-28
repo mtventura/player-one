@@ -7,14 +7,15 @@ const numberFormat = new Intl.NumberFormat('es-AR', options)
 const CartList = ({className, items, clearCartHandler, removeFromCartHandler, cartTotal, addOneToCartItem, removeOneToCartItem}) =>{
 
     return(
-    <div className={className}>
-        {items.map(item => <StyledCartItem key={item.id} item={item} removeFromCartHandler={removeFromCartHandler} addOneToCartItem={addOneToCartItem} removeOneToCartItem={removeOneToCartItem}/>)}
-        <div>
-            <StyledButton buttonLabel={"Vaciar carrito"} onClick={clearCartHandler} logIn textColor={"white"}/>
-            <h2>Total: {numberFormat.format(cartTotal)}</h2>
+    <div style={{display:'flex', width:"100%", justifyContent:"space-around"}}>
+        <div className={className}>
+            {items.map(item => <StyledCartItem key={item.id} item={item} removeFromCartHandler={removeFromCartHandler} addOneToCartItem={addOneToCartItem} removeOneToCartItem={removeOneToCartItem}/>)}
         </div>
-    </div>
-
+        <div style={{width:"25%"}}>
+            <h2>Total: {numberFormat.format(cartTotal)}</h2>
+            <StyledButton buttonLabel={"Vaciar carrito"} onClick={clearCartHandler} logIn textColor={"white"}/>
+        </div>
+    </div>    
     )
 }
 

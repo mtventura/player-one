@@ -2,8 +2,8 @@ import styled from "styled-components";
 import CartItem from "./CartItem";
 
 export const StyledCartItem = styled(CartItem)`
-height: 12rem;
-width: 75%;
+height: 10rem;
+width: 100%;
 display: flex;
 justify-content: space-around;
 align-items: center;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CartList from "./CartList";
 
 export const StyledCartList = styled(CartList)`
-    width:100%;
+    width:70%;
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
