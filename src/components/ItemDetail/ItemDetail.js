@@ -1,10 +1,22 @@
 import { StyledItemCount } from "../ItemCount/ItemCount.Style"
+import { useState } from "react"
 
 const options = {style: 'currency', currency:'ARS'}
 const numberFormat = new Intl.NumberFormat('es-AR', options)
 
 const ItemDetail = ({className, item}) => {
     const descParagraphs = item.description.split("\r\n")
+
+    const initial = 1
+    const [amount, setAmount] = useState(initial === undefined ? 0 : initial);  
+    const onAddHandler = () => {
+        if(amount < item.stock)
+            setAmount(amount + 1)
+    }
+    const onRemoveHandler = () => {
+        if(amount > initial)
+            setAmount(amount - 1) 
+    }
 
     return(
         <div className={className}>
@@ -18,7 +30,7 @@ const ItemDetail = ({className, item}) => {
                     {descParagraphs.map(par => <p key={par} style={{textAlign:"left"}}>{par}</p>)}
                 </div>
                 <div style={{justifyContent:"center", display: "flex"}}>
-                    <StyledItemCount initial={1} fixedAlignment={true} item={item}/>
+                    <StyledItemCount initial={1} fixedAlignment={true} item={item} addButton={true} onAdd={onAddHandler} onRemove={onRemoveHandler}/>
                 </div>
             </div>
         </div>

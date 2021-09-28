@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 export const StyledNavBar = styled(NavBar)`
     width:100vw;
-    height:100px; 
+    height:10vh; 
     background-color:#170138;
     display:flex;
     justify-content: space-between;
