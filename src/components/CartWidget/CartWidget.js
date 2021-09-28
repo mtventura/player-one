@@ -1,10 +1,14 @@
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { useContext } from 'react';
+import CartContext from '../../context/CartContext'
 
-const CartWidget = ({className, items}) => {
+const CartWidget = ({ className }) => {
+    const { cartSize } = useContext(CartContext)
+    
     return(
     <button className={className}>
         <ShoppingCartIcon/>
-        {items}
+        {cartSize()}
     </button>
         )
 }

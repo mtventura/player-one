@@ -9,6 +9,9 @@ export const CartContextProvider = ({ defaultValue = [], children}) => {
         return items.some(item => item.id === id)
     }
 
+    const isCartEmpty = () => {
+        return items.length === 0
+    }
     const getFromCart = (id) => {
         return items.find(item => item.id === id)
     }
@@ -28,12 +31,53 @@ export const CartContextProvider = ({ defaultValue = [], children}) => {
         setItems(items.map(item => item.id === itemToUpdate.id ? {...item, quantity: quantity} : item))
     }
 
+    const addOneToCartItem = (id) => {
+        console.log(items)
+        if(id && isInCart(id)) 
+        {
+            const itemInState = items.find(item => item.id === id)
+            const quantity = itemInState.quantity + 1
+            if(itemInState.quantity + 1 <= itemInState.stock)
+                setItems(items.map(item => item.id === id ? {...item, quantity: quantity} : item))
+        }
+    }
+
+    const removeOneToCartItem = (id) => {
+        console.log(items)
+        if(id && isInCart(id))
+        {
+            const itemInState = items.find(item => item.id === id)
+            const quantity = itemInState.quantity - 1
+            if(itemInState.quantity - 1 > 0)
+                setItems(items.map(item => item.id === id ? {...item, quantity: quantity} : item))
+        }
+    }
+
     const removeFromCart = (id) => {
         setItems(items.filter(item => item.id !== id))
     }
 
-    const clearCart = () =>{
+    const clearCart = () => {
         setItems([])
+    }
+    
+    const cartTotal = () => {
+        if(isCartEmpty())
+        return 0
+
+        let total = 0 
+        items.forEach(item => {total += item.quantity * item.price})  
+        return total
+    }
+
+    const cartSize = () =>{
+        if(isCartEmpty())
+            return 0
+        
+        let total = 0 
+        items.forEach(item => {total += item.quantity})  
+        return total
+
     }
     
     return (
@@ -44,7 +88,11 @@ export const CartContextProvider = ({ defaultValue = [], children}) => {
                 isInCart, 
                 removeFromCart,
                 getFromCart, 
-                cartSize: items.length
+                clearCart,
+                cartTotal,
+                cartSize, 
+                addOneToCartItem,
+                removeOneToCartItem
             }}
         >
             {children}

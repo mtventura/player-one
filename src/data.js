@@ -27,12 +27,12 @@ export const MenuOptions = [
         "page": 'xbox',
         "login": false
     },
-    {
-        "id":'Ingresar', 
-        "name": "Ingresar",
-        "color": 'white', 
-        "login": true
-    },
+    // {
+    //     "id":'Ingresar', 
+    //     "name": "Ingresar",
+    //     "color": 'white', 
+    //     "login": true
+    // },
     // {
     //     "id": 6, 
     //     "name":'Contacto', 
