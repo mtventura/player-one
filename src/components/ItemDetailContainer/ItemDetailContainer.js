@@ -2,27 +2,30 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { StyledItemDetail } from "../ItemDetail/ItemDetail.style"
 import { StyledLoading } from "../Loading/Loading.style"
-import {Games} from '../../data'
+import { db } from '../../services/firebase/firebase'
+import { doc, getDoc } from 'firebase/firestore'
 
- const getCardItem = (id) => {
-    return new Promise((resolve) => {
-        setTimeout(() => resolve(Games.find(game => game.id.toString() === id)), 2000)
-    })
-}
 const ItemDetailContainer = ({className}) =>{
     const {id} = useParams()
-    const [selectedItem, setItem] = useState({})
+    const [item, setItem] = useState({})
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
         setLoading(true)
-        const cardItem = getCardItem(id)
-        cardItem.then(item => {setItem(item)}).then(() => {setLoading(false)})
+        getDoc(doc(db, 'items', id)).then((querySnapshot) => {
+            const item = {id: querySnapshot.id, ...querySnapshot.data()}
+            setItem(item)
+        }).catch((error) => {
+            console.log('Error recuperando los items\r\n ', error)
+        }).finally(() => {
+            setLoading(false)
+        })
+        return (() => {setItem({})})
     }, [id])
 
     return(
         <div className={className}>
-            {loading ? <StyledLoading/> : <StyledItemDetail item={selectedItem}/>}
+            {loading ? <StyledLoading/> : <StyledItemDetail item={item}/>}
         </div> 
     )
 }

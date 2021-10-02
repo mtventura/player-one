@@ -14,6 +14,7 @@ const CartList = ({className, items, clearCartHandler, removeFromCartHandler, ca
         <div style={{width:"25%"}}>
             <h2>Total: {numberFormat.format(cartTotal)}</h2>
             <StyledButton buttonLabel={"Vaciar carrito"} onClick={clearCartHandler} logIn textColor={"white"}/>
+            <StyledButton buttonLabel={"Finalizar compra"} onClick={clearCartHandler} logIn textColor={"white"}/>
         </div>
     </div>    
     )

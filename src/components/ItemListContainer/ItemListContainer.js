@@ -1,28 +1,46 @@
 import { useState, useEffect } from "react";
 import {StyledItemList} from '../ItemList/ItemList.style'
 import {StyledLoading} from '../Loading/Loading.style'
-import {Games} from '../../data'
 import { useParams } from "react-router";
+import { db } from '../../services/firebase/firebase'
+import { collection, getDocs, query, where } from "@firebase/firestore";
 
-const getCardItems = (categoryId) => {
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(!categoryId ? Games : Games.filter(game => game.categoryId === categoryId)), 2000)
-        })
-}
 const ItemListContainer = ({className}) => {
     const {id} = useParams()
-    const [itemsList, setCardItems] = useState([])
+    const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
         setLoading(true)
-        const cardItems = getCardItems(id)
-        cardItems.then(items => {setCardItems(items)}).then(() => {setLoading(false)})
+        if(!id){
+            getDocs(collection(db, 'items')).then((querySnapshot) => {
+                const items = querySnapshot.docs.map(doc => {
+                    return {id: doc.id, ...doc.data() }
+                })
+                setItems(items)
+            }).catch((error) => {
+                console.log('Error recuperando los items\r\n ', error)
+            }).finally(() => {
+                setLoading(false)
+            })
+        }else{
+            getDocs(query(collection(db, 'items'), where('categoryId', '==', id))).then((querySnapshot) => {
+                const items = querySnapshot.docs.map(doc => {
+                    return {id: doc.id, ...doc.data()}
+                })
+                setItems(items)
+            }).catch((error) => {
+                console.log('Error recuperando los items\r\n ', error)
+            }).finally(() => {
+                setLoading(false)
+            })
+        }
+        return (() => {setItems([])})
     }, [id])
     
     return(
         <div className={className}>
-            {loading ? <StyledLoading/> : <StyledItemList items={itemsList}/>}
+            {loading ? <StyledLoading/> : <StyledItemList items={items}/>}
         </div>
     )
 }
