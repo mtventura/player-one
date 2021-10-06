@@ -9,6 +9,7 @@ import { CartContextProvider } from './context/CartContext'
 import UserContext  from './context/UserContext'
 import { StyledLogInContainer } from './components/LogInContainer/LogInContainer.style';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import { StyledSignIn } from './components/SignIn/SignIn.style';
 
 function App() {
   const { user } = useContext(UserContext)
@@ -33,6 +34,9 @@ function App() {
             </PrivateRoute>
             <Route path="/login/">
               <StyledLogInContainer/>
+            </Route>
+            <Route path="/register/">
+              <StyledSignIn/>
             </Route>
           </Switch>
         </BrowserRouter>

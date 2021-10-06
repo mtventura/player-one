@@ -15,7 +15,7 @@ const Cart = ({className}) => {
     const confirmOrder = () => {
         const order = {
             buyer: user, 
-            items: items, 
+            items: items.map(({categoryId, description, image, stock, ...reducedItem}) => reducedItem), 
             date: Timestamp.fromDate(new Date()),
             total: cartTotal()
         }
