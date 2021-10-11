@@ -2,8 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { StyledItemDetail } from "../ItemDetail/ItemDetail.style"
 import { StyledLoading } from "../Loading/Loading.style"
-import { db } from '../../services/firebase/firebase'
-import { doc, getDoc } from 'firebase/firestore'
+import { getItem } from '../../services/firebase/firebase'
 
 const ItemDetailContainer = ({className}) =>{
     const {id} = useParams()
@@ -12,11 +11,10 @@ const ItemDetailContainer = ({className}) =>{
     
     useEffect(() => {
         setLoading(true)
-        getDoc(doc(db, 'items', id)).then((querySnapshot) => {
-            const item = {id: querySnapshot.id, ...querySnapshot.data()}
+        getItem(id).then(item => {
             setItem(item)
         }).catch((error) => {
-            console.log('Error recuperando los items\r\n ', error)
+            console.log('Item Detail container Error\r\n', error)
         }).finally(() => {
             setLoading(false)
         })

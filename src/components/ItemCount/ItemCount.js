@@ -3,12 +3,14 @@ import { StyledButton } from '../Button/Button.style';
 import { StyledAddItem } from './AddItem/AddItem.style';
 import { StyledRemoveItem } from './RemoveItem/RemoveItem.Style';
 import CartContext from '../../context/CartContext'
+import NotificationContext from '../../context/NotificationContext'
 
 const ItemCount = ({className, item, addButton, onAdd, onRemove, amount}) =>{
     const { addToCart } = useContext(CartContext)
-
+    const { setNotification } = useContext(NotificationContext)
     const onClickHandler = () => {
         addToCart({...item, quantity: amount})
+        setNotification('success', "Agregado al carrito satisfactoriamente")
     }
 
     const onAddHandler = () => {

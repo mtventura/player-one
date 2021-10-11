@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import {StyledItemList} from '../ItemList/ItemList.style'
 import {StyledLoading} from '../Loading/Loading.style'
 import { useParams } from "react-router";
-import { db } from '../../services/firebase/firebase'
-import { collection, getDocs, query, where } from "@firebase/firestore";
+import { getItems } from '../../services/firebase/firebase'
 
 const ItemListContainer = ({className}) => {
     const {id} = useParams()
@@ -12,29 +11,13 @@ const ItemListContainer = ({className}) => {
     
     useEffect(() => {
         setLoading(true)
-        if(!id){
-            getDocs(collection(db, 'items')).then((querySnapshot) => {
-                const items = querySnapshot.docs.map(doc => {
-                    return {id: doc.id, ...doc.data() }
-                })
-                setItems(items)
-            }).catch((error) => {
-                console.log('Error recuperando los items\r\n ', error)
-            }).finally(() => {
-                setLoading(false)
-            })
-        }else{
-            getDocs(query(collection(db, 'items'), where('categoryId', '==', id))).then((querySnapshot) => {
-                const items = querySnapshot.docs.map(doc => {
-                    return {id: doc.id, ...doc.data()}
-                })
-                setItems(items)
-            }).catch((error) => {
-                console.log('Error recuperando los items\r\n ', error)
-            }).finally(() => {
-                setLoading(false)
-            })
-        }
+        getItems(id).then(dbItems => {
+            setItems(dbItems)
+        }).catch((error) => {
+            console.log('Error recuperando los items\r\n', error)
+        }).finally(() => {
+            setLoading(false)
+        })
         return (() => {setItems([])})
     }, [id])
     

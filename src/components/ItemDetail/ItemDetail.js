@@ -5,7 +5,7 @@ const options = {style: 'currency', currency:'ARS'}
 const numberFormat = new Intl.NumberFormat('es-AR', options)
 
 const ItemDetail = ({className, item}) => {
-    const descParagraphs = item.description.split("\\r\\n")
+    const descParagraphs = item.description.split("\r\n")
 
     const initial = 1
     const [amount, setAmount] = useState(initial === undefined ? 0 : initial);  

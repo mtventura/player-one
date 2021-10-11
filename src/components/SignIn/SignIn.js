@@ -1,12 +1,9 @@
-import { collection, addDoc, getDocs, writeBatch } from '@firebase/firestore'
+import { createUser } from '../../services/firebase/firebase'
 import { useState } from 'react'
-import { db } from '../../services/firebase/firebase'
 import {StyledButton} from '../Button/Button.style'
 const SignIn = ({className}) => {
     const [user, setUser] = useState({email:'', password:'', phone:'', name:''})
-    const [users, setUsers] = useState([])
-    const [error, setError] = useState(false)
-
+    
     const onChangeNameHandler = (event) => {
         const newUser = {...user, name: event.target.value}
         setUser(newUser)
@@ -30,32 +27,7 @@ const SignIn = ({className}) => {
 
     const onClickHandler = () => {
         if(user.email.trim() !== '' && user.password.trim() !== '' && user.phone.trim() !== '' && user.password.trim() !== '' && user.name.trim() !== '')
-            createUser()
-    }
-
-    const getUsers = () =>{
-        getDocs(collection(db, 'users')).then((querySnapshot) => {
-            const users = querySnapshot.docs.map(doc => {
-                return {...doc.data()}
-            })
-            setUsers(users)
-        }).catch((error) => {
-            setError(true)
-        })
-    }
-
-    const createUser = () =>{
-        getUsers() 
-        if(!error && !users.some(userInDb => userInDb.email === user.email))
-        {
-            const batch = writeBatch(db)
-            addDoc(collection(db, 'users'), user).then(() => {
-                batch.commit().then(() => {
-                })
-            }).catch((error) => {
-                console.log('error: ', error)
-            })
-        }
+            createUser(user)
     }
 
     return(

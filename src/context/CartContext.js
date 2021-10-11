@@ -32,7 +32,6 @@ export const CartContextProvider = ({ defaultValue = [], children}) => {
     }
 
     const addOneToCartItem = (id) => {
-        console.log(items)
         if(id && isInCart(id)) 
         {
             const itemInState = items.find(item => item.id === id)
@@ -43,7 +42,6 @@ export const CartContextProvider = ({ defaultValue = [], children}) => {
     }
 
     const removeOneToCartItem = (id) => {
-        console.log(items)
         if(id && isInCart(id))
         {
             const itemInState = items.find(item => item.id === id)
