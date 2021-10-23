@@ -6,19 +6,15 @@ import { Link } from "react-router-dom"
 import { useEffect, useContext } from "react"
 import {StyledLogInWidget} from '../LogInWidget/LogInWidget.style'
 import UserContext from '../../context/UserContext'
-import CartContext from '../../context/CartContext'
 import MenuContext from '../../context/MenuContext'
+import { StyledLogOutWidget } from "../LogOutWidget/LogOutWidget.style"
 
 const NavBar = ({className}) => {
     const { isUserLoggedIn } = useContext(UserContext)
-    const { cartSize } = useContext(CartContext)
     const { menuOptions, buildMenu } = useContext(MenuContext)
 
     useEffect(() => {
-        const buildNavMenu = () => {
             return buildMenu()
-        }
-        buildNavMenu()
     }, [])
 
     return (
@@ -32,10 +28,14 @@ const NavBar = ({className}) => {
                     {menuOptions.map(option => <Link key={option.id} to={`/category/${option.page}`}><StyledButton key={option.id} buttonLabel={option.name} textColor={option.color} logIn={option.login}/></Link>)}
                     {
                         isUserLoggedIn() ? 
-                            cartSize() !== 0 ? 
+                        <Fragment>
                             <Link to={`/cart`}>
                                 {<StyledCartWidget/>}
-                            </Link> : null 
+                            </Link>
+                            <Link to={`/`}>
+                                {<StyledLogOutWidget/>}
+                            </Link>
+                        </Fragment>
                         :
                         <Link to={`/login`}>
                             {<StyledLogInWidget/>} 

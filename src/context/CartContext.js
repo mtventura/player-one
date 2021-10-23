@@ -12,6 +12,7 @@ export const CartContextProvider = ({ defaultValue = [], children}) => {
     const isCartEmpty = () => {
         return items.length === 0
     }
+    
     const getFromCart = (id) => {
         return items.find(item => item.id === id)
     }

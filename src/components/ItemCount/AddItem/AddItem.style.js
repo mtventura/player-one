@@ -9,4 +9,5 @@ border: none;
 border-radius: 5px;
 margin-left: 1rem; 
 margin-right: 1rem;
+cursor:pointer;
 `;

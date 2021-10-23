@@ -1,16 +1,28 @@
-import { useContext } from 'react';
-import { StyledButton } from '../Button/Button.style';
-import { StyledAddItem } from './AddItem/AddItem.style';
-import { StyledRemoveItem } from './RemoveItem/RemoveItem.Style';
+import { useContext, useState } from 'react'
+import { Redirect, useLocation } from "react-router"
+import { StyledButton } from '../Button/Button.style'
+import { StyledAddItem } from './AddItem/AddItem.style'
+import { StyledRemoveItem } from './RemoveItem/RemoveItem.Style'
 import CartContext from '../../context/CartContext'
 import NotificationContext from '../../context/NotificationContext'
+import UserContext  from "../../context/UserContext"
+
 
 const ItemCount = ({className, item, addButton, onAdd, onRemove, amount}) =>{
     const { addToCart } = useContext(CartContext)
     const { setNotification } = useContext(NotificationContext)
+    const { user } = useContext(UserContext)
+    const [redirect, setRedirect] = useState(false)
+    const location = useLocation() 
+    
     const onClickHandler = () => {
-        addToCart({...item, quantity: amount})
-        setNotification('success', "Agregado al carrito satisfactoriamente")
+        if(user)
+        {
+            addToCart({...item, quantity: amount})
+            setNotification('success', "Agregado al carrito satisfactoriamente")
+        }
+        else
+            setRedirect(true)
     }
 
     const onAddHandler = () => {
@@ -25,7 +37,7 @@ const ItemCount = ({className, item, addButton, onAdd, onRemove, amount}) =>{
         <StyledRemoveItem onRemove={onRemoveHandler}/>
         <span style={{verticalAlign: "top"}}>{amount}</span>
         <StyledAddItem onAdd={onAddHandler} />
-        {addButton ? <StyledButton buttonLabel="Agregar al carrito" textColor="white" logIn onClick={onClickHandler} cart/> : null}
+        {addButton ? redirect ? <Redirect to={{pathname:'/login', state:{from: location}}}/> : <StyledButton buttonLabel="Agregar al carrito" textColor="white" logIn onClick={onClickHandler} cart/> : null}
     </div>
     )
 }

@@ -1,8 +1,6 @@
 import { StyledItemCount } from "../ItemCount/ItemCount.Style"
 import Close from '@material-ui/icons/Close'
-
-const options = {style: 'currency', currency:'ARS'}
-const numberFormat = new Intl.NumberFormat('es-AR', options)
+import { numberFormat } from "../../helpers/currencyHelper"
 
 const CartItem = ({className, item, removeFromCartHandler, addOneToCartItem, removeOneToCartItem}) =>{
     const onClickHandler = () =>{

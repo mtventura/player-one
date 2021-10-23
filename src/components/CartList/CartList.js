@@ -1,10 +1,10 @@
+import { Link } from 'react-router-dom'
 import { StyledButton } from '../Button/Button.style'
 import {StyledCartItem} from '../CartItem/CartItem.style'
+import { numberFormat } from '../../helpers/currencyHelper'
 
-const options = {style: 'currency', currency:'ARS'}
-const numberFormat = new Intl.NumberFormat('es-AR', options)
 
-const CartList = ({className, items, clearCartHandler, removeFromCartHandler, cartTotal, addOneToCartItem, removeOneToCartItem, confirmOrderHandler}) =>{
+const CartList = ({className, items, clearCartHandler, removeFromCartHandler, cartTotal, addOneToCartItem, removeOneToCartItem}) =>{
 
     return(
     <div style={{display:'flex', width:"100%", justifyContent:"space-around"}}>
@@ -14,7 +14,9 @@ const CartList = ({className, items, clearCartHandler, removeFromCartHandler, ca
         <div style={{width:"25%"}}>
             <h2>Total: {numberFormat.format(cartTotal)}</h2>
             <StyledButton buttonLabel={"Vaciar carrito"} onClick={clearCartHandler} logIn textColor={"white"}/>
-            <StyledButton buttonLabel={"Finalizar compra"} onClick={confirmOrderHandler} logIn textColor={"white"}/>
+            <Link to={`/cart/checkout`}>
+                <StyledButton buttonLabel={"Finalizar compra"} logIn textColor={"white"}/>
+            </Link>
         </div>
     </div>    
     )

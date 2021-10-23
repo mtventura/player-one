@@ -7,7 +7,7 @@ const Notification = ({className}) => {
     if(notification.message === '')
         return null
 
-    return (<div className={className}>
+    return (<div className={className} style={{backgroundColor: notification.severity === 'error' ? "red" : "green"}}>
         {notification.message}
     </div>)
 }

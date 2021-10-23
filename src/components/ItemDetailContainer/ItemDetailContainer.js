@@ -9,6 +9,7 @@ const ItemDetailContainer = ({className}) =>{
     const [item, setItem] = useState({})
     const [loading, setLoading] = useState(true)
     
+    console.log("Estoy en el itemDetailContainer")
     useEffect(() => {
         setLoading(true)
         getItem(id).then(item => {
@@ -21,6 +22,7 @@ const ItemDetailContainer = ({className}) =>{
         return (() => {setItem({})})
     }, [id])
 
+    console.log("Valor de item en el itemDetailContainer: ", item)
     return(
         <div className={className}>
             {loading ? <StyledLoading/> : <StyledItemDetail item={item}/>}

@@ -64,6 +64,8 @@ export const createUser = (newUser) =>{
           reject(`Error creando el usuario: ${error}`)
         })
       }
+      else
+        reject('Cuenta de email en uso')
     }).catch((error) => {
       reject(`Error creando el usuario: ${error}`)
     })
@@ -145,6 +147,17 @@ export const newOrder = (order) => {
           reject('error: ', error)
       })
     }   
+  })
+}
+
+export const getOrder = (id) => {
+  return new Promise((resolve, reject) => {
+    getDoc(doc(db, 'orders', id)).then((querySnapshot) => {
+      const order = {id: querySnapshot.id, ...querySnapshot.data()}
+      resolve(order)
+    }).catch((error) => {
+      reject(`Error obteniendo la órden: ${error}`)
+    })
   })
 }
 //#endregion

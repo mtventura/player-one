@@ -4,8 +4,8 @@ import SignIn from "./SignIn";
 export const StyledSignIn = styled(SignIn)`
     width:20vw;
     height:50vh; 
-    display:block;
-    justify-content: center;
-    align-items: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;    
     color: #170138;
 `

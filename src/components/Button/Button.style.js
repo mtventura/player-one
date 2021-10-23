@@ -15,5 +15,6 @@ margin-right: ${(props) => props.cart ? "1rem" : "0px"};
 &:hover
 {
     background-color: ${(props) => props.logIn ? "#F8A5C9" : "#2D0066"};
+    cursor:pointer;
 }
 `;

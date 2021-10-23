@@ -1,14 +1,12 @@
 import { StyledItemCount} from '../ItemCount/ItemCount.Style'
 import { StyledLink } from '../Link/Link.style'
 import { useState } from 'react'
-
-const options = {style: 'currency', currency:'ARS'}
-const numberFormat = new Intl.NumberFormat('es-AR', options)
-
+import { numberFormat } from '../../helpers/currencyHelper'
 
 const Item = ({className, item}) =>{
     const initial = 1
     const [amount, setAmount] = useState(initial === undefined ? 0 : initial);  
+    
     const onAddHandler = () => {
         if(amount < item.stock)
             setAmount(amount + 1)

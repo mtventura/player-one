@@ -6,13 +6,15 @@ import { StyledNavBar } from "./components/NavBar/NavBar.style"
 import { StyledItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer.style'
 import { StyledCart } from './components/Cart/Cart.style'
 import { StyledLogInContainer } from './components/LogInContainer/LogInContainer.style'
-import { StyledSignIn } from './components/SignIn/SignIn.style'
 import { StyledNotification } from './components/Notification/Notification.style'
-import PrivateRoute from './components/PrivateRoute/PrivateRoute'
-import UserContext  from './context/UserContext'
 import { CartContextProvider } from './context/CartContext'
 import { NotificationContextProvider } from './context/NotificationContext'
 import { MenuContextProvider } from './context/MenuContext'
+import { StyledCheckout } from './components/Checkout/Checkout.style';
+import { StyledSignInContainer } from './components/SignInContainer/SignInContainer.style';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import UserContext  from './context/UserContext'
+import { StyledOrderContainer } from './components/OrderContainer/OrderContainer,style';
 
 function App() {
   const { user } = useContext(UserContext)
@@ -34,14 +36,20 @@ function App() {
                 <Route path="/item/:id">
                   <StyledItemDetailContainer/>
                 </Route>
-                <PrivateRoute path="/cart/" user={user}>
+                <PrivateRoute exact path="/cart/" user={user}>
                   <StyledCart/>
                 </PrivateRoute>
                 <Route path="/login/">
                   <StyledLogInContainer/>
                 </Route>
                 <Route path="/register/">
-                  <StyledSignIn/>
+                  <StyledSignInContainer/>
+                </Route>
+                <Route path="/cart/checkout/">
+                  <StyledCheckout/>
+                </Route>
+                <Route path="/order/:id">
+                  <StyledOrderContainer/>
                 </Route>
               </Switch>
               <StyledNotification />

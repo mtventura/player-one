@@ -1,11 +1,12 @@
 import { StyledItemCount } from "../ItemCount/ItemCount.Style"
 import { useState } from "react"
-
-const options = {style: 'currency', currency:'ARS'}
-const numberFormat = new Intl.NumberFormat('es-AR', options)
+import { numberFormat } from "../../helpers/currencyHelper"
+import { StyledButton } from "../Button/Button.style"
+import { Link } from "react-router-dom"
 
 const ItemDetail = ({className, item}) => {
-    const descParagraphs = item.description.split("\r\n")
+    console.log(item)
+    const descParagraphs = item.description ? item.description.split("\r\n") : ''
 
     const initial = 1
     const [amount, setAmount] = useState(initial === undefined ? 0 : initial);  
@@ -19,6 +20,7 @@ const ItemDetail = ({className, item}) => {
     }
 
     return(
+        item.description ? 
         <div className={className}>
             <div style={{marginRight:"2rem"}}>
                 <img alt="" src={item.image} style={{borderRadius: "10px"}}/>
@@ -33,6 +35,13 @@ const ItemDetail = ({className, item}) => {
                     <StyledItemCount amount={amount} fixedAlignment={true} item={item} addButton={true} onAdd={onAddHandler} onRemove={onRemoveHandler}/>
                 </div>
             </div>
+        </div>
+        :
+        <div>
+            <h2> El producto no existe</h2>
+            <Link to={`/`}>
+                <StyledButton buttonLabel={"Volver al catálogo"} textColor={'white'}></StyledButton>
+            </Link>
         </div>
     )
 }

@@ -9,4 +9,5 @@ export const StyledNavBar = styled(NavBar)`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    box-sizing: border-box;
 `;

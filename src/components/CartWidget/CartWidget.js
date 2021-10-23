@@ -6,10 +6,10 @@ const CartWidget = ({ className }) => {
     const { cartSize } = useContext(CartContext)
     
     return(
-    <button className={className}>
-        <ShoppingCartIcon/>
-        {cartSize()}
-    </button>
+        <button className={className}>
+            <ShoppingCartIcon />
+            {cartSize()}
+        </button>
         )
 }
 

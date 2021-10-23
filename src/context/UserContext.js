@@ -3,12 +3,13 @@ import { getUsers } from '../services/firebase/firebase'
 
 const Context = createContext()
 
-export const UserContextProvider = ({ defaultValue = {}, children }) =>{
+export const UserContextProvider = ({ defaultValue = null, children }) =>{
     const [user, setUser] = useState(defaultValue)
     const [error, setError] = useState({message: '', error: false})
 
     const isUserLoggedIn = () => {
-        return Object.entries(user).length !== 0
+        console.log("Valor de user: ", user);
+        return user != null
     }
 
     const logIn = (userInfo) => {
