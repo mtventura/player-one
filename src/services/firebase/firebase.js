@@ -3,13 +3,20 @@ import { getFirestore } from "firebase/firestore";
 import { addDoc, collection, doc, getDoc, getDocs, query, Timestamp, where, writeBatch } from '@firebase/firestore'
 
 //#region Configuración Firebase
+console.log(process.env.REACT_APP_apiKey)
+console.log(process.env.REACT_APP_authDomain)
+console.log(process.env.REACT_APP_projectId)
+console.log(process.env.REACT_APP_storageBucket)
+console.log(process.env.REACT_APP_messagingSenderId)
+console.log(process.env.REACT_APP_appId)
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDr4V5AbBCWI0RSWB15RhbhHbeWm8iZbjw",
-  authDomain: "player-one-ecommerce.firebaseapp.com",
-  projectId: "player-one-ecommerce",
-  storageBucket: "player-one-ecommerce.appspot.com",
-  messagingSenderId: "310998195566",
-  appId: "1:310998195566:web:8e9fafc9015bfdf16a757f"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId
 };
 
 const app = firebase.initializeApp(firebaseConfig)
