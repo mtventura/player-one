@@ -1,6 +1,8 @@
 # Player One e-commerce
 ![cover](./public/Cover.png)
 
+![demo](https://giphy.com/gifs/OD58HLvGElm19mHMFz.gif)
+
 Player one es un e-commerce que se centra en el mundo de los videojuegos y lo relacionado a ellos. 
 
 ## **Cómo utilizar**
@@ -25,5 +27,22 @@ Permite que se creen links a los distintos componentes sin tener que recargar el
 
 ## **Distribución del código** 
 
-En el root del proyecto se encontrarán los archivos 
+En el root del proyecto se deben encontrar los archivos *package.json*, *.env*, *.gitignore* y *README.md*
+Luego en ese mismo nivel se encontrarán las carpetas *public* y *src*
+
+### **public**
+Esta carpeta contiene el *cover*, el *favicon* y el archivo *index.html*
+
+### **src**
+Esta carpeta contiene los archivos *App.js*, *App.css*, *index.js* e *index.css*. Además se hallará en ella las carpetas *assets*, *components*, *helpers*, *context* y *services*
+
+- assets: Contiene las imagenes que se utilizan dentro de la aplicación. 
+- components: Contiene los distintos components y containers que se muestran en la aplicación. 
+- context: Contiene los diferentes contextos que se utilizan en la aplicación. 
+    - CartContext: Contiene todos los métodos con la lógica para manejar un carrito. Agregar, eliminar, vaciar el carrito, calcular el total, etc. 
+    - MenuContext: Contiene los métodos para recuperar la información para armar el menú. 
+    - NotificationContext: Contiene los métodos para poder mostrar las notificaciones. 
+    - UserContext: Contiene los métodos que permiten iniciar sesión, cerrar sesión y crear un usuario. 
+- helpers: Contiene la clase currencyHelper que permite mostrar los montos como dinero. 
+- services: Contiene la clase firebase que contiene todos los métodos para recuperar la información de la base de datos. Grabar una órden, recuperar los artículos, etc. 
 
