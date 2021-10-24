@@ -1,7 +1,6 @@
 # Player One e-commerce
 ![cover](./public/Cover.png)
 
-![demo](https://media.giphy.com/media/OD58HLvGElm19mHMFz/giphy-downsized-large.gif) 
 
 Player one es un e-commerce que se centra en el mundo de los videojuegos y lo relacionado a ellos. 
 
