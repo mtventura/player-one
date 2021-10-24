@@ -1,8 +1,9 @@
 # Player One e-commerce
 ![cover](./public/Cover.png)
 
-
 Player one es un e-commerce que se centra en el mundo de los videojuegos y lo relacionado a ellos. 
+
+![demo](https://media.giphy.com/media/OD58HLvGElm19mHMFz/giphy-downsized-large.gif) 
 
 ## **Cómo utilizar**
 1. Clonar el repositorio de GitHub.
